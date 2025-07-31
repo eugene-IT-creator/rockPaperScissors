@@ -64,7 +64,7 @@ const game = () => {
     } else if (computerScore > playerScore) {
         message = `Hahahahaa You Lost! Evil AI reigns supreme in the world of Rock Paper Scissors! Evil AI score: ${computerScore} - Your score: ${playerScore}`;
     } else {
-        message = `It was a draw.... what a close match, my coding must have failed me`;
+        message = `It was a draw.... what a close match, my coding must have failed me.. Evil AI score: ${computerScore} - Your score: ${playerScore}`;
     }
 
     return message;
