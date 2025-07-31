@@ -13,7 +13,7 @@ const playRound = (playerSelection, computerSelection) => {
     computer = String(computerSelection).toLowerCase();
     
     if (player == 'rock' && computer == 'scissors') {
-        return "You win!, Rock beats Scissors";
+        return "You Win!, Rock beats Scissors";
     } else if (player == 'rock' && computer == 'paper') {
         return "You Lose! Paper beats Rock";
     } else if (player == 'scissors' && computer == 'rock') {
