@@ -40,12 +40,28 @@ const getUserInput = () => {
 }
 
 const game = () => {
+    let playerScore = 0;
+    let computerScore = 0;
+    let message;
     for (let i = 0; i < 5; i++) {
         const playerSelection = getUserInput();
         const computerSelection = computerPlay();
         const result = playRound(playerSelection, computerSelection);
+        if (result.includes("Win")) {
+            playerScore++;
+        } else if (result.includes("Lose")) {
+            computerScore++;
+        }
         console.log(`Round ${i + 1}:`);
         console.log(result);
-        
     }
+    if (playerScore > computerScore) {
+        message = `You won the match! Evil AI score: ${computerScore} - Your score: ${playerScore} This is IMPOSSIBLE! My coding has surely failed me`;
+    } else if (computerScore > playerScore) {
+        message = `Hahahahaa You Lost! Evil AI reigns supreme in the world of Rock Paper Scissors! Evil AI score: ${computerScore} - Your score: ${playerScore}`;
+    } else {
+        message = `It was a draw.... what a close match, my coding must have failed me`;
+    }
+
+    return message;
 }
