@@ -21,6 +21,31 @@ const playRound = (playerSelection, computerSelection) => {
     } else if (player == 'paper' && computer == 'scissors') {
         return "You Lose! Scissors beats Paper";
     } else {
-        return "Draw!";
+        return `Draw! You both played ${player}`;
+    }
+}
+
+const getUserInput = () => {
+    let isValidInput = false;
+    const validInputs = ['rock', 'paper', 'scissors'];
+    while (!isValidInput) {
+        const userInput = String(prompt("GO! type 'Rock', 'Paper', or 'Scissors'"));
+        if (isNaN(userInput) && validInputs.includes(userInput.toLowerCase())) {
+            isValidInput = true;
+            return userInput;
+        } else {
+            alert("Invalid Input");
+        }
+    }
+}
+
+const game = () => {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getUserInput();
+        const computerSelection = computerPlay();
+        const result = playRound(playerSelection, computerSelection);
+        console.log(`Round ${i + 1}:`);
+        console.log(result);
+        
     }
 }
