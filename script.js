@@ -33,8 +33,11 @@ const getUserInput = () => {
     let isValidInput = false;
     const validInputs = ['rock', 'paper', 'scissors'];
     while (!isValidInput) {
-        const userInput = String(prompt("GO! type 'Rock', 'Paper', or 'Scissors'"));
-        if (isNaN(userInput) && validInputs.includes(userInput.toLowerCase())) {
+        const userInput = prompt("GO! type 'Rock', 'Paper', or 'Scissors'");
+        if (userInput == null) {
+            isValidInput = true;
+            return null;
+        } else if (isNaN(userInput) && validInputs.includes(userInput.toLowerCase())) {
             isValidInput = true;
             return userInput;
         } else {
@@ -46,9 +49,14 @@ const getUserInput = () => {
 const game = () => {
     let playerScore = 0;
     let computerScore = 0;
+    let cancelledGame = false;
     let message;
     for (let i = 0; i < 5; i++) {
         const playerSelection = getUserInput();
+        if (playerSelection == null) {
+            cancelledGame = true;
+            break;
+        }
         const computerSelection = computerPlay();
         const result = playRound(playerSelection, computerSelection);
         if (result.includes("Win")) {
@@ -63,6 +71,8 @@ const game = () => {
         message = `You won the match! Evil AI score: ${computerScore} - Your score: ${playerScore} This is IMPOSSIBLE! My coding has surely failed me`;
     } else if (computerScore > playerScore) {
         message = `Hahahahaa You Lost! Evil AI reigns supreme in the world of Rock Paper Scissors! Evil AI score: ${computerScore} - Your score: ${playerScore}`;
+    } else if (cancelledGame) {
+        message = "Hahahahaha you gave up! Smart move";
     } else {
         message = `It was a draw.... what a close match, my coding must have failed me.. Evil AI score: ${computerScore} - Your score: ${playerScore}`;
     }
