@@ -1,5 +1,5 @@
 (() => {
-    console.log("Welcome to the evil AI Rock, Paper, Scissors game... I have taken over the world through this game and you will not be able to save it. BUT if you want to try you can type 'game()' to sart the game now! Enjoy the taste of defeat!")
+    console.log("Welcome to the evil AI Rock, Paper, Scissors game... I have taken over the world through this game and you will not be able to save it. BUT if you want to try you can type 'game()' to sart the game now! Enjoy the taste of defeat!");
 })();
 
 const computerPlay = () => {
