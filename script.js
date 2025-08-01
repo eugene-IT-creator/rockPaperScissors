@@ -1,76 +1,81 @@
 (() => {
-    const options = ["rock", "paper", "scissors"];
-
-    function computerPlay() {
-        const random = options[Math.floor(Math.random() * options.length)];
-        return random;
-    }
-
-    function playerChoice() {
-        let validatedInput = false;
-        while (validatedInput == false) {
-            const choice = prompt("Rock, Paper or Scissors?");
-            if (choice == null) {
-                continue;
-            }
-            const choiceInLower = choice.toLowerCase();
-            if (options.includes(choiceInLower)) {
-                validatedInput = true;
-                return choiceInLower;
-            }
-        }
-    }
-
-    function playRound(playerSelection, computerSelection) {
-        if (playerSelection.toUpperCase() === computerSelection.toUpperCase()) {
-            return "it's a draw!";
-        } else if ((playerSelection.toLowerCase() === 'rock' && computerSelection === 'scissors')) {
-            return "You win! Rock beats scissors.";
-        } else if ((playerSelection.toLowerCase() === 'rock' && computerSelection === 'paper')) {
-            return "You lose! Paper beats rock.";
-        } else if ((playerSelection.toLowerCase() === 'paper' && computerSelection === 'rock')) {
-            return "You win! Paper beats rock.";
-        } else if ((playerSelection.toLowerCase() === 'paper' && computerSelection === 'scissors')) {
-            return "You lose! Scissors beats paper.";
-        } else if ((playerSelection.toLowerCase() === 'scissors' && computerSelection === 'paper')) {
-            return "You win! Scissors beats paper.";
-        } else if ((playerSelection.toLowerCase() === 'scissors' && computerSelection === 'rock')) {
-            return "You lose! Rock beats scissors.";
-        }
-    }
-
-    function game() {
-        let scorePlayer = 0;
-        let scoreComputer = 0;
-        for (let i = 0; i < 5; i++) {
-            const playerSelection = playerChoice();
-            const computerSelection = computerPlay();
-            console.log(computerSelection);
-            console.log(playRound(playerSelection, computerSelection));
-            console.log(`Player ${scorePlayer} VS Computer ${scoreComputer}`);
-            if ((playRound(playerSelection, computerSelection) === ("You win! Rock beats scissors."))
-                || (playRound(playerSelection, computerSelection) === ("You win! Paper beats rock."))
-                || (playRound(playerSelection, computerSelection) === ("You win! Scissors beats paper."))) {
-                scorePlayer++;
-            } else if ((playRound(playerSelection, computerSelection) === ("You lose! Rock beats scissors."))
-                || (playRound(playerSelection, computerSelection) === ("You lose! Paper beats rock."))
-                || (playRound(playerSelection, computerSelection) === ("You lose! Scissors beats paper."))) {
-                scoreComputer++;
-
-            }
-        }
-        console.log("Game Over")
-        if (scorePlayer > scoreComputer) {
-            console.log("Congrats you win!!");
-        } else if (scorePlayer < scoreComputer) {
-            console.log("Try again! Never give up!");
-        } else {
-            console.log("it's a tie!");
-        }
-    }
-
-    game();
+    console.log("Welcome to the evil AI Rock, Paper, Scissors game... I have taken over the world through this game and you will not be able to save it. BUT if you want to try you can type 'game()' to sart the game now! Enjoy the taste of defeat!")
 })();
 
+const computerPlay = () => {
+    let plays = ['Rock', 'Paper', 'Scissors'];
+    randomIndex = Math.floor(Math.random() * plays.length);
+    return plays[randomIndex];
+}
 
+const playRound = (playerSelection, computerSelection) => {
+    player = String(playerSelection).toLowerCase();
+    computer = String(computerSelection).toLowerCase();
+    
+    if (player == 'rock' && computer == 'scissors') {
+        return "You Win!, Rock beats Scissors";
+    } else if (player == 'rock' && computer == 'paper') {
+        return "You Lose! Paper beats Rock";
+    } else if (player == 'scissors' && computer == 'rock') {
+        return "You Lose! Rock beats Scissors";
+    } else if (player == 'scissors' && computer == 'paper') {
+        return "You Win! Scissors beats Paper";
+    } else if (player == 'paper' && computer == 'rock') {
+        return "You Win! Paper beats Rock";
+    } else if (player == 'paper' && computer == 'scissors') {
+        return "You Lose! Scissors beats Paper";
+    } else {
+        return `Draw! You both played ${player}`;
+    }
+}
 
+const getUserInput = () => {
+    let isValidInput = false;
+    const validInputs = ['rock', 'paper', 'scissors'];
+    while (!isValidInput) {
+        const userInput = prompt("GO! type 'Rock', 'Paper', or 'Scissors'");
+        if (userInput == null) {
+            isValidInput = true;
+            return null;
+        } else if (isNaN(userInput) && validInputs.includes(userInput.toLowerCase())) {
+            isValidInput = true;
+            return userInput;
+        } else {
+            alert("Invalid Input");
+        }
+    }
+}
+
+const game = () => {
+    let playerScore = 0;
+    let computerScore = 0;
+    let cancelledGame = false;
+    let message;
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getUserInput();
+        if (playerSelection == null) {
+            cancelledGame = true;
+            break;
+        }
+        const computerSelection = computerPlay();
+        const result = playRound(playerSelection, computerSelection);
+        if (result.includes("Win")) {
+            playerScore++;
+        } else if (result.includes("Lose")) {
+            computerScore++;
+        }
+        console.log(`Round ${i + 1}:`);
+        console.log(result);
+    }
+    if (playerScore > computerScore) {
+        message = `You won the match! Evil AI score: ${computerScore} - Your score: ${playerScore} This is IMPOSSIBLE! My coding has surely failed me`;
+    } else if (computerScore > playerScore) {
+        message = `Hahahahaa You Lost! Evil AI reigns supreme in the world of Rock Paper Scissors! Evil AI score: ${computerScore} - Your score: ${playerScore}`;
+    } else if (cancelledGame) {
+        message = "Hahahahaha you gave up! Smart move";
+    } else {
+        message = `It was a draw.... what a close match, my coding must have failed me.. Evil AI score: ${computerScore} - Your score: ${playerScore}`;
+    }
+
+    return message;
+}
