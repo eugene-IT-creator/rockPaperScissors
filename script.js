@@ -12,17 +12,17 @@ const playRound = (playerSelection, computerSelection) => {
     player = String(playerSelection).toLowerCase();
     computer = String(computerSelection).toLowerCase();
     
-    if (player == 'rock' && computer == 'scissors') {
+    if (player === 'rock' && computer === 'scissors') {
         return "You Win!, Rock beats Scissors";
-    } else if (player == 'rock' && computer == 'paper') {
+    } else if (player === 'rock' && computer === 'paper') {
         return "You Lose! Paper beats Rock";
-    } else if (player == 'scissors' && computer == 'rock') {
+    } else if (player === 'scissors' && computer === 'rock') {
         return "You Lose! Rock beats Scissors";
-    } else if (player == 'scissors' && computer == 'paper') {
+    } else if (player === 'scissors' && computer === 'paper') {
         return "You Win! Scissors beats Paper";
-    } else if (player == 'paper' && computer == 'rock') {
+    } else if (player === 'paper' && computer === 'rock') {
         return "You Win! Paper beats Rock";
-    } else if (player == 'paper' && computer == 'scissors') {
+    } else if (player === 'paper' && computer === 'scissors') {
         return "You Lose! Scissors beats Paper";
     } else {
         return `Draw! You both played ${player}`;
@@ -41,7 +41,7 @@ const getUserInput = () => {
             isValidInput = true;
             return userInput;
         } else {
-            alert("Invalid Input");
+            alert("Invalid Input! You must choose only ONE of the three given words! What's wrong with you?");
         }
     }
 }
