@@ -1,5 +1,5 @@
 (() => {
-    console.log("Welcome to the evil AI Rock, Paper, Scissors game... I have taken over the world through this game and you will not be able to save it. BUT if you want to try you can type 'game()' to sart the game now! Enjoy the taste of defeat!");
+    console.log("Welcome to the evil AI Rock, Paper, Scissors game... I have taken over the world through this game and you will not be able to save it. BUT if you want to try you can type 'game()' to start the game now! Enjoy the taste of defeat!");
 })();
 
 const computerPlay = () => {
@@ -9,11 +9,11 @@ const computerPlay = () => {
 }
 
 const playRound = (playerSelection, computerSelection) => {
-    player = String(playerSelection).toLowerCase();
-    computer = String(computerSelection).toLowerCase();
+    player = (playerSelection).toLowerCase();
+    computer = (computerSelection).toLowerCase();
     
     if (player === 'rock' && computer === 'scissors') {
-        return "You Win!, Rock beats Scissors";
+        return "You Win! Rock beats Scissors";
     } else if (player === 'rock' && computer === 'paper') {
         return "You Lose! Paper beats Rock";
     } else if (player === 'scissors' && computer === 'rock') {
