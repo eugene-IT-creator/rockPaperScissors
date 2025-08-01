@@ -3,7 +3,7 @@
 })();
 
 const computerPlay = () => {
-    let plays = ['Rock', 'Paper', 'Scissors'];
+    let plays = ["Rock", "Paper", "Scissors"];
     randomIndex = Math.floor(Math.random() * plays.length);
     return plays[randomIndex];
 }
@@ -12,17 +12,17 @@ const playRound = (playerSelection, computerSelection) => {
     player = (playerSelection).toLowerCase();
     computer = (computerSelection).toLowerCase();
     
-    if (player === 'rock' && computer === 'scissors') {
+    if (player === "rock" && computer === "scissors") {
         return "You Win! Rock beats Scissors";
-    } else if (player === 'rock' && computer === 'paper') {
+    } else if (player === "rock" && computer === "paper") {
         return "You Lose! Paper beats Rock";
-    } else if (player === 'scissors' && computer === 'rock') {
+    } else if (player === "scissors" && computer === "rock") {
         return "You Lose! Rock beats Scissors";
-    } else if (player === 'scissors' && computer === 'paper') {
+    } else if (player === "scissors" && computer === "paper") {
         return "You Win! Scissors beats Paper";
-    } else if (player === 'paper' && computer === 'rock') {
+    } else if (player === "paper" && computer === "rock") {
         return "You Win! Paper beats Rock";
-    } else if (player === 'paper' && computer === 'scissors') {
+    } else if (player === "paper" && computer === "scissors") {
         return "You Lose! Scissors beats Paper";
     } else {
         return `Draw! You both played ${player}`;
@@ -31,7 +31,7 @@ const playRound = (playerSelection, computerSelection) => {
 
 const getUserInput = () => {
     let isValidInput = false;
-    const validInputs = ['rock', 'paper', 'scissors'];
+    const validInputs = ["rock", "paper", "scissors"];
     while (!isValidInput) {
         const userInput = prompt("GO! type 'Rock', 'Paper', or 'Scissors'");
         if (userInput == null) {
